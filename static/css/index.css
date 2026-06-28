@@ -1,0 +1,306 @@
+  @import url(https://fonts.googleapis.com/css?family=Arvo);
+
+  html {
+    line-height: 1.4;
+    font-family: Georgia, serif;
+    font-size: 18px;
+    color: #1a1a1a;
+    background-color: #fdfdfd;
+  }
+
+  body {
+    margin: 0 auto;
+    margin-top: -5em;
+    max-width: 70%;
+    padding-left: 50px;
+    padding-right: 50px;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    text-rendering: optimizeLegibility;
+    font-kerning: normal;
+  }
+
+  @media (max-width: 600px) {
+    body {
+      font-size: 0.9em;
+      padding: 1em;
+    }
+
+    h1 {
+      font-size: 1.6em;
+      color: #0066cc;
+      text-align: center;
+      margin: auto;
+    }
+  }
+
+  @media print {
+    body {
+      background-color: transparent;
+      color: black;
+      font-size: 12pt;
+    }
+
+    p,
+    h2,
+    h3 {
+      orphans: 3;
+      widows: 3;
+    }
+
+    h2,
+    h3,
+    h4 {
+      page-break-after: avoid;
+    }
+  }
+
+  h1 {
+    text-align: center;
+  }
+
+  p {
+    margin: 1em 0;
+  }
+
+  a {
+    color: #0066cc;
+  }
+
+  a:visited {
+    color: #0066cc;
+  }
+
+  img {
+    max-width: 100%;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    color: #0066cc;
+    margin-top: 2em;
+  }
+
+  ol,
+  ul {
+    padding-left: 1.7em;
+    margin-top: 1em;
+    list-style-type: square;
+  }
+
+  li>ol,
+  li>ul {
+    margin-top: 0;
+  }
+
+  blockquote {
+    margin: 1em 0 1em 1.7em;
+    padding-left: 1em;
+    border-left: 2px solid #e6e6e6;
+    color: #606060;
+  }
+
+  #code_quote {
+    padding-left: 0.2em;
+    padding-right: 0.2em;
+    color: hsl(0, 74%, 14%);
+    font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+    font-size: 85%;
+  }
+
+  code {
+    font-family: Menlo, Monaco, 'Lucida Console', Consolas, monospace;
+    font-size: 80%;
+    margin: 0;
+    width: 100%;
+  }
+
+  pre {
+    margin: 0.2em 0;
+    overflow: auto;
+  }
+
+  pre code {
+    padding: 0;
+    overflow: visible;
+    overflow-wrap: normal;
+  }
+
+  hr {
+    height: 4px;
+    border: 0;
+    margin: 30px auto;
+    width: 40%;
+    background-color: #0066cc;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0.0, 0.8);
+  }
+
+  table {
+    margin: 0 auto;
+    border-collapse: collapse;
+    width: 80%;
+    display: table;
+    font-variant-numeric: lining-nums tabular-nums;
+
+  }
+
+  table caption {
+    margin-bottom: 0.75em;
+  }
+
+  tbody {
+    margin-top: 0.5em;
+    border-top: 1px solid #1a1a1a;
+    border-bottom: 2px solid #1a1a1a;
+  }
+
+  th {
+    border-top: 2px solid #1a1a1a;
+    padding: 0.25em 0.5em 0.25em 0.5em;
+
+  }
+
+  td {
+    padding: 0.125em 0.5em 0.25em 0.5em;
+    text-align: center;
+  }
+
+  .tdx {
+    text-align: left;
+    text-indent: 2ch;
+  }
+
+  header {
+    margin-bottom: 4em;
+    text-align: center;
+  }
+
+  .center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+    text-align: center;
+    color: hsl(0, 83%, 28%);
+  }
+
+  #impbox {
+    width: auto;
+    border: 2px solid rgb(226, 41, 41);
+    padding: 20px;
+    margin: 2px;
+    border-radius: 25px;
+  }
+
+  #bibtex {
+    margin-top: -2em;
+    padding: 25px 25px 0px 25px;
+    width: 95%;
+    display: block;
+    background-color: #f5f2f0;
+    font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New;
+    font-size: 85%;
+  }
+
+  #bibtex span.attr {
+    color: #1783b0;
+    text-indent: 4ch;
+    display: inline-block;
+  }
+
+  code {
+    white-space: pre-wrap;
+  }
+
+  div.hanging-indent {
+    margin-left: 1.5em;
+    text-indent: -1.5em;
+  }
+
+  .display.math {
+    display: block;
+    text-align: center;
+    margin: 0.5rem auto;
+  }
+
+  .modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+  }
+
+  /* Modal Content/Box */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto;
+    /* 15% from the top and centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    /* Could be more or less, depending on screen size */
+  }
+
+  /* The Close Button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+
+/* Organizer bio modal behavior
+   - No dark/faded backdrop
+   - Background page remains clickable and scrollable
+   - Modal content, close button, and X remain clickable
+*/
+.modal-backdrop {
+  display: none !important;
+}
+
+body.modal-open {
+  overflow: auto !important;
+  padding-right: 0 !important;
+}
+
+.organizer-modal {
+  background: transparent !important;
+  pointer-events: none;
+}
+
+.organizer-modal .modal-dialog,
+.organizer-modal .modal-content {
+  pointer-events: auto;
+}
+
+.organizer-modal .modal-content {
+  opacity: 1 !important;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.25);
+}
