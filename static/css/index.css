@@ -11,9 +11,9 @@
   body {
     margin: 0 auto;
     margin-top: -5em;
-    max-width: 70%;
-    padding-left: 50px;
-    padding-right: 50px;
+    max-width: 85%;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-top: 50px;
     padding-bottom: 50px;
     hyphens: auto;
@@ -257,7 +257,7 @@
     /* 15% from the top and centered */
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 100%;
     /* Could be more or less, depending on screen size */
   }
 
