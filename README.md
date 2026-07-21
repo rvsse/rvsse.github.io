@@ -1,2 +1,4 @@
 # rvsse.github.io
-webpage for workshop on robust vision systems
+webpage for:
+
+Workshop on Robust Vision in Synthetic Environments (RV-SE) 
