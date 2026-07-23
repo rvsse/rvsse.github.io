@@ -45,6 +45,10 @@ img {
   max-width: 100%;
 }
 
+.brand-short {
+    display: none;
+}
+
 h1,
 h2,
 h3,
@@ -213,6 +217,14 @@ body.modal-open {
 @media (max-width: 767.98px) {
   html {
     font-size: 16.2px;
+  }
+  
+  .brand-full {
+    display: none;
+  }
+
+  .brand-short {
+    display: inline;
   }
 
   h1 {
