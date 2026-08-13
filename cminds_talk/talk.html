@@ -1,0 +1,253 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Talk @ CMInDS, IIT Bombay</title>
+
+    <style>
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle at top, #1b2a4a, #08111f 65%);
+        overflow: hidden;
+      }
+
+      .deck {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+      }
+
+      .progress {
+        position: fixed;
+        left: 0;
+        bottom: 0;
+
+        height: 4px;
+        width: 0%;
+
+        background: rgba(255, 255, 255, 0.85);
+
+        transition: width 0.2s ease;
+      }
+
+      .slide {
+        width: 80vw;
+        max-height: 90vh;
+        object-fit: contain;
+
+        border-radius: 14px;
+        box-shadow:
+          0 25px 70px rgba(0, 0, 0, 0.45),
+          0 0 0 1px rgba(255, 255, 255, 0.08);
+
+        transition:
+          opacity 0.25s ease,
+          transform 0.25s ease;
+      }
+
+      .slide.fade {
+        opacity: 0;
+        transform: scale(0.985);
+      }
+
+      .arrow {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+
+        width: 56px;
+        height: 56px;
+
+        border: 1px solid rgba(255, 255, 255, 0.18);
+        border-radius: 999px;
+
+        background: rgba(10, 20, 35, 0.45);
+        color: white;
+
+        font-size: 34px;
+        cursor: pointer;
+
+        display: grid;
+        place-items: center;
+
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+
+        box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+
+        transition:
+          transform 0.2s ease,
+          background 0.2s ease,
+          border-color 0.2s ease;
+      }
+
+      .arrow:hover {
+        transform: translateY(-50%) scale(1.08);
+        background: rgba(255, 255, 255, 0.14);
+        border-color: rgba(255, 255, 255, 0.4);
+      }
+
+      .arrow:active {
+        transform: translateY(-50%) scale(0.93);
+      }
+
+      .prev {
+        left: 24px;
+      }
+
+      .next {
+        right: 24px;
+      }
+
+      .counter {
+        position: fixed;
+        bottom: 18px;
+        left: 50%;
+        transform: translateX(-50%);
+
+        padding: 6px 12px;
+        border-radius: 999px;
+
+        background: rgba(0, 0, 0, 0.28);
+        color: rgba(255, 255, 255, 0.75);
+
+        font:
+          13px system-ui,
+          sans-serif;
+
+        backdrop-filter: blur(10px);
+      }
+
+      @media (orientation: portrait) {
+        .slide {
+          width: 80vh;
+          max-height: none;
+          transform: rotate(90deg);
+        }
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="deck">
+      <img id="slide" class="slide" alt="Presentation slide" />
+
+      <button class="arrow prev" id="prev" aria-label="Previous slide">‹</button>
+
+      <button class="arrow next" id="next" aria-label="Next slide">›</button>
+    </div>
+
+    <div id="counter" class="counter"></div>
+
+    <div class="progress-track">
+      <div id="progress" class="progress"></div>
+    </div>
+
+    <script>
+      const slides = [
+        1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 
+        11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 
+        21, 22, 23, 24, 27, 28, 29, 30, 
+        31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 
+        41, 42,
+      ];
+
+      const slide = document.getElementById("slide");
+      const counter = document.getElementById("counter");
+      const progress = document.getElementById("progress");
+
+      const prevButton = document.getElementById("prev");
+      const nextButton = document.getElementById("next");
+
+      let index = 0;
+
+      function showSlide() {
+        const slideNumber = slides[index];
+
+        const filename = String(slideNumber).padStart(2, "0");
+
+        slide.src = `slides/slide-${filename}.svg`;
+
+        progress.style.width = `${((index + 1) / slides.length) * 100}%`;
+
+        history.replaceState(null, "", `#${slideNumber}`);
+      }
+
+      function move(direction) {
+        index = (index + direction + slides.length) % slides.length;
+
+        showSlide();
+      }
+
+      async function toggleFullscreen() {
+        try {
+          if (!document.fullscreenElement) {
+            await document.documentElement.requestFullscreen();
+          } else {
+            await document.exitFullscreen();
+          }
+        } catch (error) {
+          console.error("Fullscreen failed:", error);
+        }
+      }
+
+      /*
+      Arrow buttons
+    */
+
+      prevButton.addEventListener("click", () => {
+        move(-1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        move(1);
+      });
+
+      /*
+      Keyboard controls
+
+      Right arrow / Page Down / Space = next
+      Left arrow / Page Up = previous
+      F = fullscreen
+    */
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === "PageDown" || event.key === " ") {
+          event.preventDefault();
+          move(1);
+        } else if (event.key === "ArrowLeft" || event.key === "PageUp") {
+          event.preventDefault();
+          move(-1);
+        } else if (event.key.toLowerCase() === "f") {
+          toggleFullscreen();
+        }
+      });
+
+      /*
+      Read URL hash.
+
+      Example:
+      index.html#27
+
+      opens slide 27.
+    */
+
+      const requestedSlide = Number(location.hash.substring(1));
+
+      const requestedIndex = slides.indexOf(requestedSlide);
+
+      if (requestedIndex !== -1) {
+        index = requestedIndex;
+      }
+
+      showSlide();
+    </script>
+  </body>
+</html>
+
